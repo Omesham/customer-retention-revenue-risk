@@ -3,7 +3,8 @@
 from pathlib import Path
 from zipfile import ZipFile
 import io
-
+import truststore
+truststore.inject_into_ssl()
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,20 +36,45 @@ def download_retail() -> None:
     print(f"Saved: {destination}")
 
 
+
 def download_hillstrom() -> None:
-    """Download the experiment CSV; refuse an HTML error page masquerading as CSV."""
+    """Download Hillstrom, using GitHub as a fallback."""
     destination = RAW / "hillstrom.csv"
+
+    # Skip downloading if the dataset already exists.
     if destination.exists():
         print(f"Already present: {destination}")
         return
-    print("Downloading Hillstrom randomized experiment from the author...")
-    response = requests.get(HILLSTROM_URL, timeout=90)
-    response.raise_for_status()
-    first_line = response.text.splitlines()[0].lower()
-    if "segment" not in first_line or "conversion" not in first_line:
-        raise ValueError("Hillstrom download does not look like the expected CSV header")
-    destination.write_bytes(response.content)
-    print(f"Saved: {destination}")
+
+    # Try the original website first, then the GitHub mirror.
+    mirror_url = (
+        "https://raw.githubusercontent.com/W-Tran/uplift-modelling/"
+        "master/data/hillstrom/"
+        "Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
+    )
+
+    for url in (HILLSTROM_URL, mirror_url):
+        try:
+            # Request the dataset.
+            response = requests.get(url, timeout=90)
+            response.raise_for_status()
+
+            # Verify that the response looks like our expected CSV.
+            first_line = response.text.splitlines()[0].lower()
+            if "segment" not in first_line or "conversion" not in first_line:
+                raise ValueError("Unexpected CSV header")
+
+            # Save the validated dataset.
+            destination.write_bytes(response.content)
+            print(f"Saved: {destination}")
+            return
+
+        except (requests.RequestException, ValueError) as exc:
+            # Try the next source if this one fails.
+            print(f"Download failed: {exc}")
+
+    raise RuntimeError("Both Hillstrom download sources failed")
+
 
 
 if __name__ == "__main__":

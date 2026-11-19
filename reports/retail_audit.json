@@ -1,0 +1,18 @@
+{
+  "source": "UCI Online Retail II",
+  "rows": 1067371,
+  "source_sheet_counts": {
+    "Year 2010-2011": 541910,
+    "Year 2009-2010": 525461
+  },
+  "first_invoice_date": "2009-12-01 07:45:00",
+  "last_invoice_date": "2011-12-09 12:50:00",
+  "missing_customer_id_rows": 243007,
+  "missing_invoice_dates": 0,
+  "missing_or_invalid_prices": 0,
+  "cancelled_invoice_rows": 19494,
+  "negative_quantity_rows": 22950,
+  "nonpositive_price_rows": 6207,
+  "possible_duplicate_line_rows": 67246,
+  "note": "No records automatically removed; review possible sheet overlap and duplicates."
+}
