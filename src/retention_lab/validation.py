@@ -47,3 +47,13 @@ def check_duplicates(df):
 
     # Return all matching rows for inspection.
     return df.loc[df.duplicated(subset=columns, keep=False)]
+
+def validate_training_data(df):
+    # Count customers appearing more than once.
+    print(f"Duplicate customer IDs: {df['customer_id'].duplicated().sum()}")
+
+    # Count missing values across all columns.
+    print(f"Missing values: {df.isna().sum().sum()}")
+
+    # Check for churn labels other than 0 or 1.
+    print(f"Invalid churn labels: {(~df['churn'].isin([0, 1])).sum()}")
