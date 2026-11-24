@@ -1,0 +1,66 @@
+2026-11-24 14:55:12,481 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 14:55:12,486 | INFO | Accessing as Omesham
+2026-11-24 14:55:19,444 | INFO | HTTP Request: GET https://dagshub.com/api/v1/repos/Omesham/customer-retention-revenue-risk "HTTP/1.1 200 OK"
+2026-11-24 14:55:19,922 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 14:55:19,923 | INFO | Initialized MLflow to track repo "Omesham/customer-retention-revenue-risk"
+2026-11-24 14:55:19,924 | INFO | Repository Omesham/customer-retention-revenue-risk initialized!
+2026-11-24 14:55:22,617 | INFO | Running experiment 1/6
+2026-11-24 14:55:22,617 | INFO | Parameters: {'max_depth': 2, 'min_child_weight': 1, 'reg_lambda': 1}
+2026-11-24 14:55:26,508 | INFO | validation_mae: 571.0295
+2026-11-24 14:55:26,508 | INFO | validation_rmse: 1980.0935
+2026-11-24 14:55:26,508 | INFO | validation_r2: 0.6648
+2026-11-24 14:55:26,508 | INFO | estimated_total_spending: 1605961.7500
+2026-11-24 14:55:26,509 | INFO | actual_total_spending: 1698052.5000
+2026-11-24 14:55:26,509 | INFO | total_error_pct: -5.4233
+2026-11-24 14:55:26,509 | INFO | best_iteration: 280.0000
+2026-11-24 14:55:41,299 | INFO | New best validation MAE: 571.0295
+2026-11-24 14:55:41,579 | INFO | Running experiment 2/6
+2026-11-24 14:55:41,579 | INFO | Parameters: {'max_depth': 3, 'min_child_weight': 5, 'reg_lambda': 5}
+2026-11-24 14:55:43,690 | INFO | validation_mae: 553.9918
+2026-11-24 14:55:43,690 | INFO | validation_rmse: 1907.7356
+2026-11-24 14:55:43,690 | INFO | validation_r2: 0.6889
+2026-11-24 14:55:43,690 | INFO | estimated_total_spending: 1569718.3750
+2026-11-24 14:55:43,691 | INFO | actual_total_spending: 1698052.5000
+2026-11-24 14:55:43,691 | INFO | total_error_pct: -7.5577
+2026-11-24 14:55:43,691 | INFO | best_iteration: 265.0000
+2026-11-24 14:55:51,087 | INFO | New best validation MAE: 553.9918
+2026-11-24 14:55:51,340 | INFO | Running experiment 3/6
+2026-11-24 14:55:51,340 | INFO | Parameters: {'max_depth': 4, 'min_child_weight': 5, 'reg_lambda': 5}
+2026-11-24 14:55:54,570 | INFO | validation_mae: 572.5503
+2026-11-24 14:55:54,570 | INFO | validation_rmse: 1928.6932
+2026-11-24 14:55:54,570 | INFO | validation_r2: 0.6820
+2026-11-24 14:55:54,570 | INFO | estimated_total_spending: 1630267.0000
+2026-11-24 14:55:54,570 | INFO | actual_total_spending: 1698052.5000
+2026-11-24 14:55:54,571 | INFO | total_error_pct: -3.9920
+2026-11-24 14:55:54,571 | INFO | best_iteration: 176.0000
+2026-11-24 14:56:19,883 | INFO | Running experiment 4/6
+2026-11-24 14:56:19,883 | INFO | Parameters: {'max_depth': 5, 'min_child_weight': 5, 'reg_lambda': 5}
+2026-11-24 14:56:31,429 | INFO | validation_mae: 560.8137
+2026-11-24 14:56:31,429 | INFO | validation_rmse: 1915.5288
+2026-11-24 14:56:31,429 | INFO | validation_r2: 0.6863
+2026-11-24 14:56:31,430 | INFO | estimated_total_spending: 1608606.0000
+2026-11-24 14:56:31,430 | INFO | actual_total_spending: 1698052.5000
+2026-11-24 14:56:31,430 | INFO | total_error_pct: -5.2676
+2026-11-24 14:56:31,430 | INFO | best_iteration: 341.0000
+2026-11-24 14:56:47,971 | INFO | Running experiment 5/6
+2026-11-24 14:56:47,971 | INFO | Parameters: {'max_depth': 3, 'min_child_weight': 10, 'reg_lambda': 10}
+2026-11-24 14:56:51,762 | INFO | validation_mae: 548.4436
+2026-11-24 14:56:51,763 | INFO | validation_rmse: 1878.0385
+2026-11-24 14:56:51,763 | INFO | validation_r2: 0.6985
+2026-11-24 14:56:51,763 | INFO | estimated_total_spending: 1543871.5000
+2026-11-24 14:56:51,763 | INFO | actual_total_spending: 1698052.5000
+2026-11-24 14:56:51,763 | INFO | total_error_pct: -9.0799
+2026-11-24 14:56:51,763 | INFO | best_iteration: 309.0000
+2026-11-24 14:57:15,589 | INFO | New best validation MAE: 548.4436
+2026-11-24 14:57:15,834 | INFO | Running experiment 6/6
+2026-11-24 14:57:15,834 | INFO | Parameters: {'max_depth': 4, 'min_child_weight': 10, 'reg_lambda': 10}
+2026-11-24 14:57:19,660 | INFO | validation_mae: 561.3030
+2026-11-24 14:57:19,660 | INFO | validation_rmse: 1858.0741
+2026-11-24 14:57:19,660 | INFO | validation_r2: 0.7048
+2026-11-24 14:57:19,660 | INFO | estimated_total_spending: 1604102.7500
+2026-11-24 14:57:19,660 | INFO | actual_total_spending: 1698052.5000
+2026-11-24 14:57:19,661 | INFO | total_error_pct: -5.5328
+2026-11-24 14:57:19,661 | INFO | best_iteration: 248.0000
+2026-11-24 14:57:35,427 | INFO | Best validation MAE: 548.4436
+2026-11-24 14:57:35,428 | INFO | Best run ID: 440287f2f3e94f07b81b24da5dc32463
+2026-11-24 14:57:35,428 | INFO | Spending model tuning completed successfully.
