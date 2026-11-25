@@ -11,8 +11,11 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Install the project's Python dependencies.
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements-api.txt .
+RUN pip install --no-cache-dir -r requirements-api.txt
+
+# Verify Uvicorn works before completing the build.
+RUN python -m uvicorn --version | grep -i uvicorn
 
 # Copy the application source code.
 COPY src/ ./src/
