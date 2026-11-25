@@ -1,0 +1,46 @@
+name: Customer Retention CI
+
+# Trigger the workflow on pushes and pull requests.
+on:
+  push:
+    branches: [development, main]
+  pull_request:
+    branches: [development, main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Retrieve the repository source code.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Configure the Python environment.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Install project dependencies.
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Execute automated tests.
+      - name: Run tests
+        run: python -m pytest tests/ -v
+
+  docker-build:
+    runs-on: ubuntu-latest
+
+    # Build the image only after tests pass.
+    needs: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Verify that the application image builds successfully.
+      - name: Build Docker image
+        run: docker build -t customer-retention-api:ci .

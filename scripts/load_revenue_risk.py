@@ -1,52 +1,41 @@
 import csv
-import os
 import logging
 from pathlib import Path
 
 import psycopg
 
+from src.retention_lab.config import load_config
+from src.retention_lab.logger import configure_logging
+
+logger = logging.getLogger(__name__)
+
 
 def main() -> None:
     """
-    Create the PostgreSQL table and load customer revenue
-    risk predictions from the final CSV report.
+    Load customer revenue risk predictions into PostgreSQL.
 
     Returns:
         None.
+
+    Raises:
+        Exception: If configuration, file reading, or database ingestion fails.
     """
-
-    # Define project paths.
-    root = Path(__file__).resolve().parents[1]
-    report_path = root / "reports/final_revenue_at_risk.csv"
-    schema_path = root / "sql/schema.sql"
-    log_dir = root / "logs"
-
-    # Create the logging directory if necessary.
-    log_dir.mkdir(parents=True, exist_ok=True)
-
-    # Configure terminal and file logging.
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(message)s",
-        handlers=[
-            logging.FileHandler(log_dir / "load_revenue_risk.log"),
-            logging.StreamHandler()
-        ]
-    )
-
-    logger = logging.getLogger(__name__)
-
     try:
-        # Retrieve database credentials from environment variables.
-        connection_string = os.environ["DATABASE_URL"]
+        # Load environment settings before configuring logging.
+        config = load_config()
+        configure_logging()
+
+        # Define the required project files.
+        root = Path(__file__).resolve().parents[1]
+        report_path = root / "reports/final_revenue_at_risk.csv"
+        schema_path = root / "sql/schema.sql"
 
         # Verify that the required files exist.
         for path in [report_path, schema_path]:
             if not path.is_file():
                 raise FileNotFoundError(f"File not found: {path}")
 
-        # Define the SQL statement for inserting predictions.
-        # Existing customer predictions will not be overwritten.
+        # Insert predictions without overwriting existing records.
         insert_query = """
             INSERT INTO customer_revenue_risk (
                 customer_id,
@@ -65,7 +54,6 @@ def main() -> None:
         with report_path.open("r", encoding="utf-8", newline="") as file:
             reader = csv.DictReader(file)
 
-            # Prepare records in the same order as the SQL columns.
             records = [
                 (
                     row["customer_id"],
@@ -78,36 +66,37 @@ def main() -> None:
                 for row in reader
             ]
 
+        # Reject empty prediction reports.
+        if not records:
+            raise ValueError("Revenue risk report is empty.")
+
         logger.info("Records read: %s", len(records))
 
-        # Establish a PostgreSQL connection.
-        # Changes are committed on success or rolled back on failure.
-        with psycopg.connect(connection_string) as connection:
+        # Connect using the centralized database configuration.
+        with psycopg.connect(**config) as connection:
             with connection.cursor() as cursor:
 
-                # Create the database table and index.
+                # Create the required database objects.
                 cursor.execute(schema_path.read_text(encoding="utf-8"))
 
-                # Insert customer predictions in batches.
+                # Insert customer predictions.
                 cursor.executemany(insert_query, records)
-
                 logger.info("Records inserted: %s", cursor.rowcount)
 
-                # Verify the total number of stored records.
+                # Verify the number of stored records.
                 cursor.execute("SELECT COUNT(*) FROM customer_revenue_risk")
-
                 total_records = cursor.fetchone()[0]
 
                 logger.info("Total database records: %s", total_records)
 
+        # Successful transactions are committed automatically.
         logger.info("Database ingestion completed successfully.")
 
     except Exception:
-        # Log the error and its stack trace.
+        # Record failures and their stack traces.
         logger.exception("Database ingestion failed.")
         raise
 
 
-# Execute the ingestion process.
 if __name__ == "__main__":
     main()
