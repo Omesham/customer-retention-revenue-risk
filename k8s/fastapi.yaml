@@ -1,0 +1,52 @@
+# FastAPI application deployment.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+  namespace: customer-retention
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+        - name: fastapi
+          image: customer-retention-revenue-risk-development-fastapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+
+          # Load application configuration and database credentials.
+          envFrom:
+            - configMapRef:
+                name: retention-config
+            - secretRef:
+                name: retention-secret
+
+          # Verify application and database availability.
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+---
+# Internal FastAPI networking.
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi
+  namespace: customer-retention
+spec:
+  selector:
+    app: fastapi
+  ports:
+    - port: 8000
+      targetPort: 8000
+  type: ClusterIP
