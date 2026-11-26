@@ -20,6 +20,8 @@ RUN python -m uvicorn --version | grep -i uvicorn
 # Copy the application source code.
 COPY src/ ./src/
 
+# Verify that FastAPI and its dependencies load successfully.
+RUN python -c "from src.retention_lab.api.main import app; print(app.title)"
 # Document the API's internal port.
 EXPOSE 8000
 

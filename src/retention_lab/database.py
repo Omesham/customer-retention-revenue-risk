@@ -1,6 +1,5 @@
 import logging
 
-from dataclasses_json import config
 import psycopg
 from psycopg.rows import dict_row
 
