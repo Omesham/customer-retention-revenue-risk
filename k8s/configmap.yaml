@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: retention-config
+  namespace: customer-retention
+data:
+  APP_ENV: "development"
+  LOG_LEVEL: "INFO"
+  POSTGRES_HOST: "postgres"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "retention_dev_db"
+  POSTGRES_USER: "retention_user"

@@ -1,0 +1,34 @@
+2026-11-24 15:30:33,489 | INFO | Final training samples: 17,831
+2026-11-24 15:30:33,489 | INFO | Test samples: 2,290
+2026-11-24 15:30:41,170 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 15:30:41,176 | INFO | Accessing as Omesham
+2026-11-24 15:30:46,310 | INFO | HTTP Request: GET https://dagshub.com/api/v1/repos/Omesham/customer-retention-revenue-risk "HTTP/1.1 200 OK"
+2026-11-24 15:30:51,372 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 15:30:51,373 | INFO | Initialized MLflow to track repo "Omesham/customer-retention-revenue-risk"
+2026-11-24 15:30:51,374 | INFO | Repository Omesham/customer-retention-revenue-risk initialized!
+2026-11-24 15:30:59,304 | INFO | test_mae: 680.8324
+2026-11-24 15:30:59,305 | INFO | test_rmse: 3289.7661
+2026-11-24 15:30:59,305 | INFO | test_r2: 0.5487
+2026-11-24 15:30:59,305 | INFO | estimated_total_spending: 2200736.0000
+2026-11-24 15:30:59,305 | INFO | actual_total_spending: 2868162.1520
+2026-11-24 15:30:59,305 | INFO | total_error_pct: -23.2702
+2026-11-24 15:31:09,689 | INFO | Final model directory: C:\Users\omeshamisu.anigala\git\customer-retention-revenue-risk\models\c8a9863c3c1a43f5a1bdd8b95da747f2
+2026-11-24 15:31:09,690 | INFO | Final run ID: c8a9863c3c1a43f5a1bdd8b95da747f2
+2026-11-24 15:31:09,934 | INFO | Final spending model training completed successfully.
+2026-11-24 15:46:58,904 | INFO | Final training samples: 17,831
+2026-11-24 15:46:58,904 | INFO | Test samples: 2,290
+2026-11-24 15:47:04,055 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 15:47:04,061 | INFO | Accessing as Omesham
+2026-11-24 15:47:09,504 | INFO | HTTP Request: GET https://dagshub.com/api/v1/repos/Omesham/customer-retention-revenue-risk "HTTP/1.1 200 OK"
+2026-11-24 15:47:09,949 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 15:47:09,950 | INFO | Initialized MLflow to track repo "Omesham/customer-retention-revenue-risk"
+2026-11-24 15:47:09,951 | INFO | Repository Omesham/customer-retention-revenue-risk initialized!
+2026-11-24 15:47:21,032 | INFO | test_mae: 680.8324
+2026-11-24 15:47:21,032 | INFO | test_rmse: 3289.7661
+2026-11-24 15:47:21,032 | INFO | test_r2: 0.5487
+2026-11-24 15:47:21,032 | INFO | estimated_total_spending: 2200736.0000
+2026-11-24 15:47:21,032 | INFO | actual_total_spending: 2868162.1520
+2026-11-24 15:47:21,032 | INFO | total_error_pct: -23.2702
+2026-11-24 15:47:32,926 | INFO | Final model directory: C:\Users\omeshamisu.anigala\git\customer-retention-revenue-risk\models\48010bbc4a7f43a39be43683fdd98389
+2026-11-24 15:47:32,926 | INFO | Final run ID: 48010bbc4a7f43a39be43683fdd98389
+2026-11-24 15:47:33,169 | INFO | Final spending model training completed successfully.

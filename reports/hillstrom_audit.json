@@ -1,0 +1,28 @@
+{
+  "source": "Hillstrom randomized email experiment",
+  "rows": 64000,
+  "by_treatment": {
+    "Mens E-Mail": {
+      "n": 21307,
+      "visits": 3894,
+      "conversions": 267,
+      "conversion_rate": 0.012531,
+      "average_spend_per_assigned_customer": 1.422617
+    },
+    "No E-Mail": {
+      "n": 21306,
+      "visits": 2262,
+      "conversions": 122,
+      "conversion_rate": 0.005726,
+      "average_spend_per_assigned_customer": 0.652789
+    },
+    "Womens E-Mail": {
+      "n": 21387,
+      "visits": 3238,
+      "conversions": 189,
+      "conversion_rate": 0.008837,
+      "average_spend_per_assigned_customer": 1.077202
+    }
+  },
+  "note": "Descriptive only; inferential comparisons and confidence intervals come next."
+}

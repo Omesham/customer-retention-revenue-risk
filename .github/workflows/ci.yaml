@@ -1,0 +1,63 @@
+name: Customer Retention CI
+
+# Trigger automated testing on pushes and pull requests.
+on:
+  push:
+    branches: [development, main]
+  pull_request:
+    branches: [development, main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Retrieve the repository source code.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Configure the Python environment.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Install project dependencies.
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Execute automated tests.
+      - name: Run tests
+        run: python -m pytest tests/ -v
+
+  docker-build:
+    runs-on: ubuntu-latest
+
+    # Build the image only after tests pass.
+    needs: test
+
+    permissions:
+      contents: read
+      packages: write
+
+    env:
+      IMAGE_NAME: ghcr.io/omesham/customer-retention-revenue-risk
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Build and tag the image with the commit identifier.
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME:${{ github.sha }} .
+
+      # Authenticate with GitHub Container Registry.
+      - name: Login to GHCR
+        if: github.event_name == 'push'
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      # Publish images from successful branch pushes.
+      - name: Publish Docker image
+        if: github.event_name == 'push'
+        run: docker push $IMAGE_NAME:${{ github.sha }}

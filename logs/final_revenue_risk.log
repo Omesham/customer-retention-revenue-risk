@@ -1,0 +1,22 @@
+2026-11-24 15:50:19,126 | ERROR | Revenue risk analysis failed.
+Traceback (most recent call last):
+  File "C:\Users\omeshamisu.anigala\git\customer-retention-revenue-risk\scripts\final_revenue_risk.py", line 51, in main
+    raise FileNotFoundError(f"Required file not found: {path}")
+FileNotFoundError: Required file not found: C:\Users\omeshamisu.anigala\git\customer-retention-revenue-risk\models\a81c8ba692eb43af8eda738acccbb887\xgboost_model.json
+2026-11-24 15:55:56,850 | INFO | Customers analyzed: 5,281
+2026-11-24 15:55:56,850 | INFO | Estimated revenue exposure: £1,949,347.75
+2026-11-24 15:55:56,851 | INFO | Expected revenue: £1,855,124.25
+2026-11-24 15:55:56,856 | INFO | Top 10 customers:
+ customer_id scoring_date  churn_probability  estimated_90d_spend  revenue_at_risk_90d  expected_90d_revenue
+       12346   2011-09-10           0.718439         17605.798828         12648.696289           4957.102539
+       13666   2011-09-10           0.789854         12125.907227          9577.696289           2548.210938
+       15098   2011-09-10           0.640466         13347.826172          8548.827148           4798.999023
+       17763   2011-09-10           0.815887         10327.390625          8425.984375           1901.406494
+       18227   2011-09-10           0.811965          8378.384766          6802.955566           1575.429199
+       14646   2011-09-10           0.100657         56209.210938          5657.835449          50551.375000
+       15749   2011-09-10           0.556922          9985.269531          5561.018066           4424.251465
+       13452   2011-09-10           0.669791          7829.106934          5243.862793           2585.244141
+       13093   2011-09-10           0.617668          7609.809570          4700.338867           2909.470703
+       15283   2011-09-10           0.821701          5399.316895          4436.626465            962.690308
+2026-11-24 15:55:56,856 | INFO | Report saved to: C:\Users\omeshamisu.anigala\git\customer-retention-revenue-risk\reports\final_revenue_at_risk.csv
+2026-11-24 15:55:56,856 | INFO | Revenue risk analysis completed successfully.

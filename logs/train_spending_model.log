@@ -1,0 +1,14 @@
+2026-11-24 14:45:11,121 | INFO | Training samples: 16229
+2026-11-24 14:45:11,122 | INFO | Validation samples: 1602
+2026-11-24 14:45:11,122 | INFO | Input features: 24
+2026-11-24 14:45:23,657 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 14:45:23,663 | INFO | Accessing as Omesham
+2026-11-24 14:45:34,795 | INFO | HTTP Request: GET https://dagshub.com/api/v1/repos/Omesham/customer-retention-revenue-risk "HTTP/1.1 200 OK"
+2026-11-24 14:45:45,356 | INFO | HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+2026-11-24 14:45:45,358 | INFO | Initialized MLflow to track repo "Omesham/customer-retention-revenue-risk"
+2026-11-24 14:45:45,359 | INFO | Repository Omesham/customer-retention-revenue-risk initialized!
+2026-11-24 14:45:55,582 | INFO | Starting spending model training.
+2026-11-24 14:46:04,014 | INFO | validation_mae: 562.2245
+2026-11-24 14:46:04,014 | INFO | validation_rmse: 2031.2636
+2026-11-24 14:46:04,014 | INFO | validation_r2: 0.6473
+2026-11-24 14:46:13,807 | INFO | Spending model training completed successfully.
