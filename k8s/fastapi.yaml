@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: fastapi
-          image: ghcr.io/omesham/customer-retention-revenue-risk:919a7e9fcfcf58503e13a2c5cf2ca2a2dcee4aa7
+          image: ghcr.io/omesham/customer-retention-revenue-risk:a4021e45c361dcf07488bd55f380e359b9a3e297
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
